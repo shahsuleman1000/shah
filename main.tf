@@ -49,9 +49,7 @@ resource "aws_ecs_service" "web" {
   desired_count   = 1
 
   network_configuration {
-    awsvpc_configuration {
-      subnets          = ["subnet-011dad032feb4a3ad"]
-      security_groups  = ["sg-0b252545ff9dbbfc2"]
-    }
+    subnets = ["subnet-011dad032feb4a3ad"]
+    security_groups = ["sg-0b252545ff9dbbfc2"]
   }
 }
