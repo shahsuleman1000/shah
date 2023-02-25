@@ -9,7 +9,7 @@ resource "aws_ecs_task_definition" "web" {
   {
     "name": "web",
     "image": "httpd:latest",
-    "memory":    = 256,
+    "memory": 256,
     "essential": true,
     "portMappings": [
       {
