@@ -2,7 +2,7 @@ provider "aws" {
   region = "us-west-2"
 }
 
-resource "aws_ecs_cluster" "hello-world-cluster" {
+resource "aws_ecs_cluster" "hello-world" {
   name = "hello-world-cluster"
 }
 
@@ -24,16 +24,34 @@ resource "aws_ecs_task_definition" "web" {
   }
 ]
 DEFINITION
+  
+  network_mode = "awsvpc"
+  
+  requires_compatibilities = ["FARGATE"]
+
+  execution_role_arn = "arn:aws:iam::123456789012:role/ecsTaskExecutionRole"
+  
+  cpu = "256"
+  
+  memory = "512"
+  
+  task_role_arn = "arn:aws:iam::123456789012:role/ecsTaskRole"
+  
+  volumes {
+    name = "test-volume"
+  }
 }
 
 resource "aws_ecs_service" "web" {
   name            = "hello-world-service"
+  cluster         = aws_ecs_cluster.hello-world.id
   task_definition = aws_ecs_task_definition.web.arn
   desired_count   = 1
-  cluster         = aws_ecs_cluster.hello-world-cluster.arn
 
   network_configuration {
-    subnets          = ["subnet-011dad032feb4a3ad"]
-    security_groups  = ["sg-0b252545ff9dbbfc2"]
+    awsvpc_configuration {
+      subnets          = ["subnet-011dad032feb4a3ad"]
+      security_groups  = ["sg-0b252545ff9dbbfc2"]
+    }
   }
 }
