@@ -9,8 +9,8 @@ resource "aws_ecs_task_definition" "web" {
   {
     "name": "web",
     "image": "httpd:latest",
-    "memory": 256,
     "essential": true,
+    "memory": 256,  
     "portMappings": [
       {
         "containerPort": 80,
