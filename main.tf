@@ -37,7 +37,7 @@ DEFINITION
   
   task_role_arn = "arn:aws:iam::123456789012:role/ecsTaskRole"
   
-  volumes {
+  volume {
     name = "test-volume"
   }
 }
