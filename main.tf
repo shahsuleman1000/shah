@@ -29,13 +29,13 @@ DEFINITION
   
   requires_compatibilities = ["FARGATE"]
 
-  execution_role_arn = "arn:aws:iam::123456789012:role/ecsTaskExecutionRole"
+  execution_role_arn = "arn:aws:iam::520874372098:role/terraform"
   
   cpu = "256"
   
   memory = "512"
   
-  task_role_arn = "arn:aws:iam::123456789012:role/ecsTaskRole"
+  task_role_arn = "arn:aws:iam::520874372098:role/terraform"
   
   volume {
     name = "test-volume"
